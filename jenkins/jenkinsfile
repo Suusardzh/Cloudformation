@@ -1,0 +1,27 @@
+pipeline {
+   agent any
+
+   stages {
+      stage('Clone Git') {
+         steps {
+            echo 'Built by Mydevops Academy'
+         }
+      }
+      stage('Build Image') {
+         steps {
+            echo 'Tested by MDA'
+         }
+      }
+      stage('Deploy Image') {
+         steps {
+            echo 'Deploy by MDA'
+         }
+      }
+     stage('Cleaning Up') {
+         steps {
+            echo 'Deployed by MDA'
+         }
+      }
+   }
+
+}  

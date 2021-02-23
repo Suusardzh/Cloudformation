@@ -1,0 +1,90 @@
+
+AWSTemplateFormatVersion: 2010-09-09
+Description: "create simple ec2"
+
+Parameters:
+  SubnetType:
+    Description: Choose SubnetID
+    Type: String
+    Default: PublicSubnet
+    AllowedValues:
+     - PublicSubnet
+     - PrivateSubnet
+  EC2Size:
+    Description: Choose InstanceType
+    Type: String
+    Default: small
+    AllowedValues:
+     - small
+     - medium
+     - large
+  ImageId:
+    Description: Choose your AMI
+    Type: String
+    Default: LinuxImg
+    AllowedValues:
+     - LinuxImg
+     - WindowsImg
+
+
+Mappings:
+  InstanceMap:
+    chooseSize:
+      small: t2.nano
+      medium: t2.micro
+      large: t2.small
+  
+  ImageIdMap:
+    us-east-1:
+      LinuxImg: ami-0323c3dd2da7fb37d
+      WindowsImg: ami-004c4e3e4e4e3795f
+      
+
+
+  SubnetMap:
+    us-east-1:
+      PublicSubnet: subnet-047840ad3fcbfdf85    
+      PrivateSubnet: subnet-01de519d361869e44
+    us-east-2:
+      PublicSubnet:  subnet-0d09746cc05ba3ffa  
+      PrivateSubnet: subnet-0ef3f1b56982c4122 
+      LinuxImg: ami-0f7919c33c90f5b58
+    us-west-1:
+      PublicSubnet:  subnet-629d6a38  
+      PrivateSubnet: subnet-faf8239c 
+      
+    af-south-1:
+      PublicSubnet:  subnet-12e80c7b
+      PrivateSubnet: subnet-f1edccbb
+     
+    
+
+
+
+
+
+Resources:
+  myEC2Instance01:
+    Type: AWS::EC2::Instance
+    Properties:
+      KeyName: virginia-kp # harcoded
+      ImageId:  ami-0323c3dd2da7fb37d  # harcoded
+      InstanceType: !Ref EC2Size
+      SubnetId: !FindInMap [ SubnetMap, !Ref "AWS::Region", !Ref SubnetType ]
+      ImageId: !FindInMap [ImageIdMap, !Ref "AWS::Region", !Ref ImageId]
+      InstanceType: !FindInMap [InstanceMap, chooseSize, !Ref EC2Size]
+     # UserData: !Base64 |
+        
+
+  #
+  #     UserData: !Base64 |
+  #       !/bin/bash
+  #       yum update -yAZ
+  #       yum install httpd -y
+  #       service httpd start
+  #       chkconfig httpd on
+  #       cd /var/www/html
+  #       echo "<html><h6>This is Suusar's public server</h6></html>" > index.html
+      
+     
+    
