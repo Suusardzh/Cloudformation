@@ -1,19 +1,12 @@
 ## Run Cloudformation command:
-### AWS Cloudformation create-stack
+### creating aws cloudformation stack for vpc through aws cli
 ```
---stack-name vpc-cli
+aws cloudformation create-stack --stack-name vpc-cli --template-body file://Documents/cfn/vpc.yaml
 ```
-### Running vpc.yml
+
+### creating stack for ec2 and through aws cli
 ```
---template-body file://vpc.yaml
-```
-### AWS Cloudformation validate-template to create vpc
-```
---template-body file://vpc.yaml
-```
-### AWS Cloudformation validate-template to create ec2
-```
---template-body file://ec2.yaml
+aws cloudformation create-stack --stack-name ec2-cli --template-body file://Documents/cfn/ec2.yaml
 ```
 ### AWS s3 copy index.html from s3 to suusarbucket
 ```
