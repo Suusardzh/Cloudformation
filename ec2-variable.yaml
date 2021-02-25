@@ -1,0 +1,48 @@
+
+AWSTemplateFormatVersion: 2010-09-09
+Description: "create simple ec2"
+
+Parameters:
+  SubnetId:
+    Description: Choose SubnetID
+    Type: String
+    Default: ''
+    
+  InstanceType:
+    Description: Choose InstanceType
+    Type: String
+    Default: ''
+    
+  ImageId:
+    Description: Choose your AMI
+    Type: String
+    Default: ''
+
+  KeyName:
+    Description: Choose Name
+    Type: String
+    Default: ''
+
+Resources:
+  myEC2Instance01:
+    Type: AWS::EC2::Instance
+    Properties:
+      KeyName: !Sub ${KeyName}
+      ImageId: !Sub ${ImageId}
+      InstanceType: !Sub ${InstanceType}
+      SubnetId: !Sub ${SubnetId}
+     # UserData: !Base64 |
+        
+
+  #
+  #     UserData: !Base64 |
+  #       !/bin/bash
+  #       yum update -yAZ
+  #       yum install httpd -y
+  #       service httpd start
+  #       chkconfig httpd on
+  #       cd /var/www/html
+  #       echo "<html><h6>This is Suusar's public server</h6></html>" > index.html
+      
+     
+    
