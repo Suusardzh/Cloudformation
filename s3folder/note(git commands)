@@ -1,0 +1,16 @@
+## creating and checkout to branch
+```
+git checkout s3/feature 
+```
+## checkoutfrom main
+
+```
+git checkout main
+```
+## see branches 
+```
+git branch
+```
+```
+git checkout -b "s3/feature"
+```
