@@ -1,0 +1,25 @@
+Topic:
+
+- Cloudformation Parameters
+
+Parameters are defined variables that can be called on the template. 
+Whenever Updating Stack wait for Review and read carefully.
+
+What is a String?
+Data type of a text 
+two
+2 - integer
+2.2 - float
+
+
+["two", ""]
+
+What is s3 bucket object consistency?
+Delete object - Eventual
+New File Uploads -Read after write 
+Upload on new version of the file -
+
+
+Task:
+
+Update Stack on S3 bucket enable versioning, the value should be paramatirezed
