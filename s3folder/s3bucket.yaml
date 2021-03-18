@@ -1,0 +1,59 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: "Create S3 Bucket with Tag"
+
+Parameters:
+  MyS3BucketName:
+    Type: String
+    Default: ""
+    Description: Enter Name for S3 Bucket  
+  TagKey1:
+    Type: String
+    Default: ""
+    Description: "Enter Key for Tag1"
+  TagValue1:
+    Type: String
+    Default: ""
+    Description: "Enter Value For Tag1"
+
+  TagKey2:
+    Type: String
+    Default: ""
+    Description: Enter Key for Tag2
+    
+  TagValue2:
+    Type: String
+    Default: ""
+    Description: "Enter Value For Tag2"
+
+  BucketVersioning:
+    Type: String
+    Default: "Suspended"
+    Description: "Bucket Versioning Configuration"
+    AllowedValues:
+      - Suspended
+      - Enabled
+  BucketKeyEnabledConfiguration:
+    Type: String
+    Default: false
+    Description: "Bucket Key Enabled Configuration"
+    AllowedValues:
+      - true
+      - false
+Resources:
+  MyS3Bucket: # Logical Resource ID
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: !Ref MyS3BucketName
+      Tags:
+        - Key: !Ref TagKey1
+          Value: !Ref TagValue1
+        - Key: !Ref TagKey2
+          Value: !Ref TagValue2
+      VersioningConfiguration:
+        Status: !Ref BucketVersioning
+      BucketEncryption:
+        ServerSideEncryptionConfiguration:
+          - ServerSideEncryptionByDefault:
+              SSEAlgorithm: 'aws:kms'
+              KMSMasterKeyID: KMS-KEY-ARN
+            BucketKeyEnabled: !Ref BucketKeyEnabledConfiguration

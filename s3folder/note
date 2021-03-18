@@ -1,0 +1,56 @@
+Manual creation of Service:
+ - AWS Console ( Graphical User Interface)
+ - aws-cli (command line Interface)
+
+what is Cloudformation?
+- Tool automate AWS Resource creation
+- Infrastucture as a Code (IAC)
+  - Create/Update/Delete resources as code 
+  - Reusable code to build the same resources in different regions
+  - Allows us to automate the magement  of Infrastucture
+
+
+
+What is Infrastucture?
+- All resources required to support an application
+
+   - Backend 
+    - Database
+        - DynamoDB (NoSQL)
+        - RDS (Relational Database Service)
+
+     - S3 Bucket 
+     - Lambda
+   - Frontend
+        - EC (Elastic Compute Cloud)
+        - ECS  ()
+        - EKS
+        - Fargate
+        - Lightsail
+   - Network
+        - Vpc
+
+   - Security
+    - IAM 
+    - KMS (Key Management Service)
+
+
+
+
+Why IAC and what are the benfits of IAC?
+    - Easy to Manage
+    - resusable
+    - Time
+    - Less Human Error
+    - Track/trace
+
+
+CloudFormation use CamelCase
+
+CloudFormation Manual steps:
+    - Sign in to Console
+    - Choose the region
+    - Select s3 Bucket
+    - Give Bucket Name
+    - Add Tag
+    - Create Bucket
