@@ -1,0 +1,46 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: "Create Security Group"
+### Parameters###
+Parameters:
+  SGName:
+    Type: String
+    Default: ""
+    Description: "Name of Security Group "
+
+  SGDescription:
+    Type: String
+    Default: ""
+    Description: "Security Group Description"
+
+  SGVpcId:
+    Type: String
+    Default: ""
+    Description: "VPC ID for Security Group"
+
+
+### Resources ###
+Resources:
+  TestSG:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupName: !Ref SGName
+      GroupDescription: !Ref SGDescription
+      VpcId: !Ref SGVpcId
+      SecurityGroupIngress:
+        - IpProtocol: "tcp"
+          ToPort: 22
+          FromPort: 22
+          CidrIp: "0.0.0.0/0"
+          Description: "SSH from 0.0.0.0/0"
+      Tags:
+        - Key: "Team"
+          Value: "background"
+        - Key: "Name"
+          Value: "Test-Ec2-SG"
+
+
+### Outputs ###
+Outputs:
+  SGName:
+    Value: !Ref TestSG
+    Description: "Security Group ID"
