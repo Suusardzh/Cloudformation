@@ -1,0 +1,49 @@
+Topic
+EC2 Instance 
+Security Group
+Output 
+
+
+ec2 details:
+Instance number
+Network
+    -default VPC
+    - Subnet Id subnet-0c63311920131c7c9
+    -User data 
+    #!/bin/bash
+    echo "test " >> /tmp/myfile
+4) Storage
+    - EBS (Elastic Block Storage)
+    - size
+    - delete on termination
+    - encryption
+5) Tags
+    key value
+
+6) Security Group
+    -defaul Storage
+7) Key-pair
+
+
+
+Security Group details:
+1 sg Name
+2 description   
+3 vpc default
+4 Inbound rules
+    -type : protocol
+    -source
+    -description
+5 Tags
+
+
+steps to create resources
+-sg
+ec
+    
+Question:
+1) what is the difference between S3 and EBS?
+s3  - object oriented Storage
+      - static files : pictures, videos Elastic
+ebs - block oriented Storage
+        - dynamic : Storage
