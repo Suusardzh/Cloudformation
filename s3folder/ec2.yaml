@@ -49,7 +49,7 @@ Resources:
         - Key: "Name"
           Value: "ec2test"
       SecurityGroupIds:
-        - sg-04efa48cbe5d98afd
+        - ""
       KeyName: !Ref SSHKEYName
         
   
