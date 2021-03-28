@@ -43,19 +43,19 @@ Mappings:
 
   SubnetMap:
     us-east-1:
-      PublicSubnet: subnet-047840ad3fcbfdf85    
-      PrivateSubnet: subnet-01de519d361869e44
+      PublicSubnet: ""    
+      PrivateSubnet: ""
     us-east-2:
-      PublicSubnet:  subnet-0d09746cc05ba3ffa  
-      PrivateSubnet: subnet-0ef3f1b56982c4122 
+      PublicSubnet:  ""  
+      PrivateSubnet: "" 
       LinuxImg: ami-0f7919c33c90f5b58
     us-west-1:
-      PublicSubnet:  subnet-629d6a38  
-      PrivateSubnet: subnet-faf8239c 
+      PublicSubnet:  ""  
+      PrivateSubnet: "" 
       
     af-south-1:
-      PublicSubnet:  subnet-12e80c7b
-      PrivateSubnet: subnet-f1edccbb
+      PublicSubnet:  ""
+      PrivateSubnet: ""
      
     
 
