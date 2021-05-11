@@ -1,0 +1,81 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: "Create Ec2 Instance2"
+### Parameters ###
+Parameters:
+  ImageId:
+    Type: String
+    Default: ""
+    Description: "EC@ Image Id  "
+  InstanceType:
+    Type: String
+    Default: "t2.micro"
+    Description: "Instance type"
+    AllowedValues:
+      - t2.micro
+      - t2.nano
+      - t2.small
+  SubnetId:
+    Type: String
+    Default: ""
+    Description: "SubnetId"
+
+  EC2NameTag:
+    Type: String
+    Default: "Apache-Test"
+    Description: "Ec2 Name"
+
+  EnvTag:
+    Type: String
+    Default: "Dev"
+    Description: "Ec2 Environment"
+    AllowedValues:
+      - "Dev"
+      - "Test"
+      - "Prod"
+  SSHKeyName:
+    Type: String
+    Default: "suusars-mac-key"
+    Description: "SSH Key Name "
+      
+
+### Resources ###
+Resources:
+  Instance2:
+    Type: AWS::EC2::Instance
+    Properties:
+      ImageId: !Ref ImageId
+      InstanceType: !Ref  InstanceType
+      SubnetId: !Ref SubnetId
+      UserData: 
+        Fn::Base64:
+          !Sub |
+            #!/bin/bash
+            sudo yum update -y
+            sudo yum install httpd -y
+            sudo echo "Hello World!" >> /var/www/html/index.html
+            sudo systemctl start httpd 
+      BlockDeviceMappings:
+        - DeviceName: "/dev/xvda"
+          Ebs:
+            VolumeType: "gp2"
+            DeleteOnTermination: "true"
+            VolumeSize: "20"
+      Tags: 
+        - Key: "Name"
+          Value: !Ref EC2NameTag 
+        - Key: "Env"
+          Value: !Ref EnvTag
+      SecurityGroupIds:
+        - !ImportValue SGVpcId
+      KeyName: !Ref SSHKeyName
+
+### Outputs ###
+Outputs:
+  InstanceId:
+    Value: !Ref Instance2
+    Description: "Instance Id"
+  InstancePublicIp:
+    Value: !GetAtt Instance2.PublicIp
+    Description: "Instance Public Ip"
+
+  

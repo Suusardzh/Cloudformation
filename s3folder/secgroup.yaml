@@ -32,6 +32,17 @@ Resources:
           FromPort: 22
           CidrIp: "0.0.0.0/0"
           Description: "SSH from 0.0.0.0/0"
+        - IpProtocol: "tcp"
+          ToPort: 80
+          FromPort: 80
+          CidrIp: "0.0.0.0/0"
+          Description: "conect from 0.0.0.0/0"
+        - IpProtocol: "tcp"
+          ToPort: 443
+          FromPort: 443
+          CidrIp: "0.0.0.0/0"
+          Description: "sec conection from 0.0.0.0/0"
+
       Tags:
         - Key: "Team"
           Value: "background"
@@ -44,3 +55,5 @@ Outputs:
   SGName:
     Value: !Ref TestSG
     Description: "Security Group ID"
+    Export: 
+      Name: SGVpcId
